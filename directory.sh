@@ -1,23 +1,12 @@
-if [ $# -eq 0 ]
-then
-echo "syntax is <$0><dirname>"
-exit 1
-fi
-if [ ! -d $1 ]
-then
-echo "directory doesn't exist"
-exit 1
-fi
-echo "directory of $1"
-echo "-----------------------"
-for file in $1/*
+for f in *
 do
-if [ -f "$file" ]
+fdatetime=`date -r $f "+%d-%m-%y %H:%M:%S"`
+if [ -d $f ]
 then
-echo "FILE    : $(basename $file)"
-elif [ -d "$file" ]
-then
-echo "DIRECTORY : $(basename $file)"
+echo "$f\t\t<DIR>\t$fdatetime"
+else
+fsize=`cat $f  |wc -c`
+echo "$f\t\t$fsize\t$fdatetime"
 fi
 done
-echo "----------------------"
+

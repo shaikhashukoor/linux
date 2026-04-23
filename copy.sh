@@ -3,7 +3,8 @@ then
 echo "syntax is <$0><src1><des1><src2><des2>"
 exit 1
 fi
-if [ $(( $# % 2 )) -ne 0 ]
+r=`expr $# % 2`
+if [ $r -ne 0 ]
 then
 echo "give files in pairs"
 exit 1
@@ -15,3 +16,4 @@ echo "copies $1 to $2"
 shift
 shift
 done
+ 
